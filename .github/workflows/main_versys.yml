@@ -23,14 +23,14 @@ jobs:
       uses: docker/login-action@v2
       with:
         registry: https://versys.azurecr.io/
-        username: ${{ secrets.AzureAppService_ContainerUsername_dfe3c4c35fa24a24bc957ed1fb3597d7 }}
-        password: ${{ secrets.AzureAppService_ContainerPassword_951f5bc9be984adeb65ff6972c21758b }}
+        username: ${{ secrets.AzureAppService_ContainerUsername_a7f536d3336d4d13bcaf41513807404c }}
+        password: ${{ secrets.AzureAppService_ContainerPassword_a0789e181e46436080ae1ff3aff27da3 }}
 
     - name: Build and push container image to registry
       uses: docker/build-push-action@v3
       with:
         push: true
-        tags: versys.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_dfe3c4c35fa24a24bc957ed1fb3597d7 }}/backend:${{ github.sha }}
+        tags: versys.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_a7f536d3336d4d13bcaf41513807404c }}/backend:${{ github.sha }}
         file: ./Dockerfile
 
   deploy:
@@ -47,5 +47,5 @@ jobs:
       with:
         app-name: 'versys'
         slot-name: 'production'
-        publish-profile: ${{ secrets.AzureAppService_PublishProfile_0a9bea124a984d748bf92e477f1873c5 }}
-        images: 'versys.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_dfe3c4c35fa24a24bc957ed1fb3597d7 }}/backend:${{ github.sha }}'
+        publish-profile: ${{ secrets.AzureAppService_PublishProfile_4e901a53e9df469192be6d4ea11cfd75 }}
+        images: 'versys.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_a7f536d3336d4d13bcaf41513807404c }}/backend:${{ github.sha }}'
